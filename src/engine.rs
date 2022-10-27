@@ -1,5 +1,6 @@
 use std::borrow::Borrow;
 use std::collections::HashMap;
+use crate::error::RuleError;
 use crate::rule::Rule;
 
 /// Defines an engine used to evaluate and execute rules.
@@ -19,9 +20,9 @@ impl RuleEngine {
     }
 
     /// orders rules by their priority, evaluates their conditions, and if true, executes the action.
-    pub fn run(&mut self) -> Result<bool, String> {
-        // sort by priority
-        self.rules.sort_by(|a, b| a.priority.cmp(&b.priority));
+    pub fn run(&mut self) -> Result<bool, RuleError> {
+        // sort by priority (from high to low -|---------------------|- inverted order)
+        self.rules.sort_by(|a, b| b.priority.cmp(&a.priority));
 
         for rule in &self.rules {
             return match rule.borrow().evaluate(&mut self.knowledge) {
