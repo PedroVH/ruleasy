@@ -1,6 +1,6 @@
 mod rule;
 mod engine;
-mod error;
+pub mod error;
 
 pub use self::rule::Rule;
 pub use self::engine::RuleEngine;
