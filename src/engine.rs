@@ -4,12 +4,12 @@ use crate::error::RuleError;
 use crate::rule::Rule;
 
 /// Defines an engine used to evaluate and execute rules.
-pub struct RuleEngine {
+pub struct RuleEngine<'a> {
     pub knowledge: HashMap<String, String>,
-    pub rules: Vec<Rule>
+    pub rules: Vec<Rule<'a>>
 }
 
-impl RuleEngine {
+impl RuleEngine<'_> {
 
     /// creates a new instance of RuleEngine
     pub fn new(knowledge: HashMap<String, String>, rules: Vec<Rule>) -> RuleEngine {

@@ -19,11 +19,11 @@ mod tests {
         knowledge.insert("ran".to_string(), "false".to_string());
 
         // defines condition
-        let condition = |knw: &mut HashMap<String, String>| {
+        let condition = &|knw: &mut HashMap<String, String>| {
             Ok(knw.get("can_run").unwrap() == "true")
         };
         // defines action
-        let action = |knw: &mut HashMap<String, String>| {
+        let action = &|knw: &mut HashMap<String, String>| {
             knw.insert("ran".to_string(), "true".to_string());
             Ok(true)
         };
@@ -49,11 +49,11 @@ mod tests {
         let knowledge = HashMap::new();
 
         // defines a true condition
-        let condition = |_: &mut HashMap<String, String>| {
+        let condition = &|_: &mut HashMap<String, String>| {
             Ok(true)
         };
         // defines first action
-        let first_action = |knw: &mut HashMap<String, String>| {
+        let first_action = &|knw: &mut HashMap<String, String>| {
             knw.insert("should_be_true".to_string(), "true".to_string());
             Ok(true)
         };
@@ -67,7 +67,7 @@ mod tests {
             action: first_action
         };
 
-        let second_action = |knw: &mut HashMap<String, String>| {
+        let second_action = &|knw: &mut HashMap<String, String>| {
             knw.insert("should_be_true".to_string(), "false".to_string());
             Ok(true)
         };
