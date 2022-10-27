@@ -1,6 +1,6 @@
 [package]
 name = "ruleasy"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["PedroVH"]
 edition = "2021"
 description = "A really simple rule engine."
